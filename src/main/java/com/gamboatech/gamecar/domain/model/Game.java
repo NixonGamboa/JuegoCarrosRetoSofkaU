@@ -47,7 +47,7 @@ public class Game {
         int numbOfLanes = Game.drivers().size();
         for (int i = 0; i < Constants.NUMB_OF_RACETRACKS; i++) {
             int kms = (int) (Math.random()*(Constants.MAX_KMS-Constants.MIN_KMS)+Constants.MIN_KMS);
-            RaceTrack newRaceTrack = new RaceTrack(kms,numbOfLanes);
+            RaceTrack newRaceTrack = new RaceTrack(i,kms,numbOfLanes);
             Game.raceTracks.add(newRaceTrack);
         }
     }

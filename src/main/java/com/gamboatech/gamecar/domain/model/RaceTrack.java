@@ -5,17 +5,15 @@ import com.gamboatech.gamecar.domain.ui.RunGame;
 import java.util.ArrayList;
 
 public class RaceTrack {
-    private static int countId=0;
-    private final int id;
+   private final int id;
     private final int lengthRace;
     private final int numbOfLanes;
     private ArrayList<Car> cars;
 
-    public RaceTrack(int kms, int numbOfLanes){
-        this.id = RaceTrack.countId;
+    public RaceTrack(int id, int kms, int numbOfLanes){
+        this.id = id;
         this.lengthRace = kms;
         this.numbOfLanes =numbOfLanes;
-        RaceTrack.countId ++;
     }
 
     //Itera e instancia carros sobre la pista actual
@@ -41,12 +39,15 @@ public class RaceTrack {
                 }
             }
             RunGame.printAdvance(cars);
-         }while (!Podio.isFullPodium()&&!cars.isEmpty());
-
+        }while (!Podio.isFullPodium()&&!cars.isEmpty());
+        cars.clear();
     }
 
     public void outOfRace(Car car){
         cars.remove(car);
+    }
+    public void addToRace(Car car){
+        cars.add(car);
     }
 
 

@@ -10,11 +10,15 @@ import java.util.Objects;
 public class RunGame {
 
     public static void runGame() throws InterruptedException {
+        clearPodium();
         adviseStart();
         runRace();
         congratulateWinners();
+        Menu.menu();
 
     }
+
+
 
     private static void adviseStart () throws InterruptedException {
         System.out.println("\n Preparados... El juego empezara pronto...");
@@ -41,9 +45,10 @@ public class RunGame {
         if(!Objects.isNull(Podio.secondPlace())){
             System.out.println("Segundo lugar: "+Podio.secondPlace().car().brand()+" "+Podio.secondPlace().car().color()+
                     " conducido por: "+Podio.secondPlace().player().username());}
-        if(!Objects.isNull(Podio.firstPlace())){
+        if(!Objects.isNull(Podio.thirdPlace())){
             System.out.println("Tercer lugar: "+Podio.thirdPlace().car().brand()+" "+Podio.thirdPlace().car().color()+
                     " conducido por: "+Podio.thirdPlace().player().username());}
+        System.out.println("#####################################################\n");
     }
 
     public static void printAdvance(ArrayList<Car> cars) {
@@ -56,5 +61,8 @@ public class RunGame {
         }
     }
 
+    private static void clearPodium(){
+        Podio.clearPodium();
+    }
 
 }

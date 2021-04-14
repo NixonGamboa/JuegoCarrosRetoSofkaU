@@ -35,4 +35,9 @@ public class TrackLane {
     public int distance() {
         return distance;
     }
+    public void resetDistance(){
+        distance=0;
+    }
+
+
 }

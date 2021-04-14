@@ -28,9 +28,15 @@ public class Podio {
     }
 
     public static void awardMedals() {
-        firstPlace().player().addGold();
-        secondPlace().player().addSilver();
-        thirdPlace().player().addBronze();
+        if(!Objects.isNull(firstPlace)){
+            firstPlace().player().addGold();
+        }
+        if (!Objects.isNull(secondPlace)){
+            secondPlace().player().addSilver();
+        }
+        if (!Objects.isNull(thirdPlace)){
+            thirdPlace().player().addBronze();
+        }
     }
 
 
