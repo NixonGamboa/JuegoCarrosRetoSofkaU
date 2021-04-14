@@ -8,7 +8,7 @@ public class Game {
     private static int idCount = 0;
     private static ArrayList<Gamer> gamers;
     private static ArrayList<Driver> drivers;
-    private static ArrayList<RaceTrack> raceTracks = new ArrayList<>();
+    private static ArrayList<RaceTrack> raceTracks;
     private static RaceTrack currentRaceTrack;
 
 
@@ -19,8 +19,8 @@ public class Game {
         return idCount;
     }
 
-    public static void setGamers(ArrayList<Gamer> gamers) {
-        Game.gamers = gamers;
+    public static void initGamers() {
+        Game.gamers = new ArrayList<>();
     }
     public static void addGamers(int id, String name) {
         Gamer newGamer = new Gamer(id,name);
@@ -58,7 +58,9 @@ public class Game {
     //Configura la pista actual creando sobre ella carriles y carros para cada jugador
     public static void makeCurrentRaceTrack(RaceTrack currentRaceTrack) {
         Game.currentRaceTrack = currentRaceTrack;
-        Game.currentRaceTrack.makeTrackLanes();
+        Game.currentRaceTrack.makeCars();
     }
-
+    public static RaceTrack currentRaceTrack() {
+        return currentRaceTrack;
+    }
 }

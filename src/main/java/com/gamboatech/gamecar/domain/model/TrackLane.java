@@ -1,20 +1,38 @@
 package com.gamboatech.gamecar.domain.model;
 
 public class TrackLane {
-    private int lanePosition;
-    private int finishMtrs;
-    private Car car;
+    private final int id;
+    private final int endOfRace;
+    private int distance;
+    private boolean isFinish;
 
-    //Metodo constructor de carril, aqui se instancia tambien el carro sobre el carril y se asigna al conductor junto con la posicion
-    public TrackLane(int lanePosition, Driver driver, int length) {
-        this.lanePosition = lanePosition;
-        this.finishMtrs = length*1000;
-        this.car = new Car(driver,this);
-        driver.setCar(this.car);
-        driver.setLanePosition(lanePosition);
+    public TrackLane(int lanePosition, int lengthLane) {
+        this.id = lanePosition;
+        this.distance=0;
+        this.endOfRace = lengthLane*1000;
+        this.isFinish = false;
     }
 
-    public int lanePosition() {
-        return lanePosition;
+
+    public void toRun(int advance){
+        distance += advance;
+    }
+
+    public void verifyingArrival(){
+        isFinish = (distance >= endOfRace);
+    }
+
+
+
+    public int id() {
+        return id;
+    }
+
+    public boolean isFinish() {
+        return isFinish;
+    }
+
+    public int distance() {
+        return distance;
     }
 }

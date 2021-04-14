@@ -2,6 +2,7 @@ package com.gamboatech.gamecar.domain.ui;
 
 import com.gamboatech.gamecar.domain.model.Game;
 import com.gamboatech.gamecar.domain.model.Gamer;
+import com.gamboatech.gamecar.domain.model.Podio;
 import com.gamboatech.gamecar.domain.model.RaceTrack;
 
 import java.util.ArrayList;
@@ -9,7 +10,16 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class SetGame {
-    public static void welcome (){
+
+    public static void setGame(){
+        welcome();
+        makeGamers();
+        makeDrivers();
+        selectRaceTrack();
+        clearPodium();
+    }
+
+    private static void welcome (){
         Game.increaseId();
         System.out.println("\n#####################################################################");
         System.out.println("##                   Bienvenido a TU "+Game.idCount()+" JUEGO DE CARROS             ##");
@@ -18,8 +28,8 @@ public class SetGame {
     }
 
     //Solicita cantidad de jugadores y crea y agrega a gamers en Game class
-    public static void makeGamers(){
-        Game.setGamers(new ArrayList<>());
+    private static void makeGamers(){
+        Game.initGamers();
         System.out.println("Cuantos jugadores desea crear:");
         int numbGamers = inputNumber();
 
@@ -31,14 +41,14 @@ public class SetGame {
     }
 
     //Se crea una lista temporal de conductores disponibles de donde se van seleccionando uno a uno
-    public static void makeDrivers() {
+    private static void makeDrivers() {
         Game.setDrivers(new ArrayList<>());
 
         boolean select = true;
         ArrayList<Gamer> availableDrivers = new ArrayList<>();
         availableDrivers.addAll(Game.gamers());
 
-        System.out.println("Seleccione quienes desean jugar en esta ocacion:");
+        System.out.println("Selecciona los conductores:");
         while (select){
             for (int i = 0; i < availableDrivers.size(); i++) {
                 System.out.println((i+1)+". "+ availableDrivers.get(i).username());
@@ -47,19 +57,22 @@ public class SetGame {
             Game.addDrivers(availableDrivers.get(response-1));
             availableDrivers.remove(response-1);
             System.out.println("Desea agregar otro jugador? y/n");
-            select = inputText().equals("y");
+            select = (inputText().equals("y")&&!availableDrivers.isEmpty());
         }
     }
 
     //Crea la lista de Pistas y selecciona la del juego en curso
-    public static void selectRaceTrack(){
+    private static void selectRaceTrack(){
         Game.makeRaceTracks();
         System.out.println("Selecciona una pista:");
         for (RaceTrack track: Game.raceTracks() ) {
-            System.out.println("Pista "+track.id()+". "+track.length()+" kms");
+            System.out.println("Pista "+track.id()+". "+track.lengthRace()+" kms");
         }
         int idTrackSelected = inputNumber();
         Game.makeCurrentRaceTrack(Game.raceTracks().get(idTrackSelected));
+    }
+    private static void clearPodium(){
+        Podio.clearPodium();
     }
 
 
@@ -71,14 +84,12 @@ public class SetGame {
         Scanner sc = new Scanner(System.in);
         System.out.println("::Ingrese un numero:");
         String input = Objects.requireNonNull(sc.nextLine(),"number is required");
-        int number = Integer.parseInt(input);
-        return number;
+        return Integer.parseInt(input);
     }
 
     private static String inputText(){
         Scanner sc = new Scanner(System.in);
-        String input = Objects.requireNonNull(sc.nextLine(),"input is required");
-        return input;
+        return Objects.requireNonNull(sc.nextLine(),"input is required");
     }
 
 }

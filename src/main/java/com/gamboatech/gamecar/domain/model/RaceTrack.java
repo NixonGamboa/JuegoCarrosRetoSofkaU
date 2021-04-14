@@ -1,38 +1,59 @@
 package com.gamboatech.gamecar.domain.model;
 
+import com.gamboatech.gamecar.domain.ui.RunGame;
+
 import java.util.ArrayList;
 
 public class RaceTrack {
     private static int countId=0;
     private final int id;
-    private final int length;
+    private final int lengthRace;
     private final int numbOfLanes;
-    private ArrayList<TrackLane> trackLanes;
+    private ArrayList<Car> cars;
 
     public RaceTrack(int kms, int numbOfLanes){
         this.id = RaceTrack.countId;
-        this.length = kms;
+        this.lengthRace = kms;
         this.numbOfLanes =numbOfLanes;
         RaceTrack.countId ++;
     }
 
-    //Itera e instancia carriles sobre la pista actual
-    public void makeTrackLanes(){
-        trackLanes = new ArrayList<>();
+    //Itera e instancia carros sobre la pista actual
+    public void makeCars(){
+        cars = new ArrayList<>();
         for (int i = 0; i < numbOfLanes; i++) {
-            int lanePosition = i;
             Driver driver = Game.drivers().get(i);
-            TrackLane newTrackLane = new TrackLane(lanePosition, driver, length);
-            trackLanes.add(newTrackLane);
+            Car newCar = new Car(i,lengthRace , driver);
+            driver.setCar(newCar);
+            cars.add(newCar);
         }
-        System.out.println("Lista de carriles sobre la pista "+ this.trackLanes);
     }
 
-    public int length() {
-        return length;
+    public void runRace(){
+        do {
+            for (Car car: cars) {
+                car.turn();
+                boolean arrived = car.isFinish();
+                if (arrived){
+                    Podio.addToPodio(car.driver());
+                    outOfRace(car);
+                    break;
+                }
+            }
+            RunGame.printAdvance(cars);
+         }while (!Podio.isFullPodium()&&!cars.isEmpty());
+
     }
+
+    public void outOfRace(Car car){
+        cars.remove(car);
+    }
+
 
     public int id() {
         return id;
+    }
+    public int lengthRace() {
+        return lengthRace;
     }
 }

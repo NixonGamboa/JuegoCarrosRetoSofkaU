@@ -2,8 +2,7 @@ package com.gamboatech.gamecar.domain.model;
 
 public class Driver {
 
-    private int lanePosition;
-    private Gamer player;
+    private final Gamer player;
     private Car car;
 
     public Driver(Gamer gamer){
@@ -11,12 +10,20 @@ public class Driver {
     }
 
 
+    public int throwDice(){
+        int dice = (int) (Math.random()*6+1);
+        return dice;
+    }
 
     public void setCar(Car car) {
         this.car = car;
     }
 
-    public void setLanePosition(int lanePosition) {
-        this.lanePosition = lanePosition;
+    public Gamer player() {
+        return player;
+    }
+
+    public Car car() {
+        return car;
     }
 }
