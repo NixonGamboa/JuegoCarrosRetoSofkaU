@@ -70,13 +70,4 @@ public class SetGame {
         int idTrackSelected = Inputs.inputNumber();
         Game.makeCurrentRaceTrack(Game.raceTracks().get(idTrackSelected));
     }
-
-
-
-
-
-
-
-
-
 }

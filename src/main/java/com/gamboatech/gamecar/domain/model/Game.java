@@ -23,7 +23,7 @@ public class Game {
         Game.gamers = new ArrayList<>();
     }
     public static void addGamers(int id, String name) {
-        Gamer newGamer = new Gamer(id,name);
+        Gamer newGamer = new Gamer(id+1,name);
         Game.gamers.add(newGamer);
     }
     public static ArrayList<Gamer> gamers() {

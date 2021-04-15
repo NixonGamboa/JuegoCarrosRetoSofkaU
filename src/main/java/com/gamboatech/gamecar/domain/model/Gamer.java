@@ -1,13 +1,26 @@
 package com.gamboatech.gamecar.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "jugadores")
 public class Gamer {
-    private final int id;
-    private final String username;
+
+    @Id
+    private int id;
+
+    private String username;
     private int golds;
     private int silver;
     private int bronzes;
 
-    public Gamer (int id,String name){
+
+    public Gamer() {
+    }
+
+    public Gamer (int id, String name){
         this.id = id;
         this.username = name;
         this.golds=0;

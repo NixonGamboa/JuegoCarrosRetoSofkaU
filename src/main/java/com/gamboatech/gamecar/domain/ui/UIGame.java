@@ -3,7 +3,6 @@ package com.gamboatech.gamecar.domain.ui;
 
 import com.gamboatech.gamecar.domain.model.Driver;
 import com.gamboatech.gamecar.domain.model.Game;
-import com.gamboatech.gamecar.domain.model.Podio;
 
 public class UIGame {
 

@@ -7,7 +7,8 @@ import com.gamboatech.gamecar.domain.model.Podio;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RunGame {
+public class RunGame{
+
 
     public static void runGame() throws InterruptedException {
         clearPodium();
@@ -15,7 +16,6 @@ public class RunGame {
         runRace();
         congratulateWinners();
         Menu.menu();
-
     }
 
 
