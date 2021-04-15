@@ -54,3 +54,7 @@ Al final debe existir un **podio** donde se clasifique **primer**, **segundo** y
 | Realiza la persistencia de los resultados obtenidos de los ganadores                     | 31.0 %     |
 | Creación de objetos de entidades; pista, juego, carril, carro, conductor, jugador, podio | 30.0 %     |
 | Métodos con menos de 6 lineas de código                                                  | 8.0 %      |
+
+##Solucion Propuesta ##
+
+Se plantea una aplicación obedeciendo al paradigma de la programación orientada a objetos, un proyecto basado en Java11 utilizando Gradle como gestor de dependencias y Spring Boot para la conexión a la base de datos Posgres.
